@@ -1,39 +1,28 @@
 const express = require("express");
-const Post = require("../models/postModel");
+const {
+  createPost,
+  getPosts,
+  getPost,
+  deletePost,
+  updatePost,
+} = require("../controllers/postsController");
 
 const router = express.Router();
 
 // Get All Posts
-router.get("/", (req, res) => {
-  res.json({ mssg: "Get All Posts" });
-});
+router.get("/", getPosts);
 
 // Get A Single Post
-router.get("/:id", (req, res) => {
-  res.json({ mssg: "Get A Single Post" });
-});
+router.get("/:id", getPost);
 
-// Post A New Post
-router.post("/", async (req, res) => {
-  const { title, description, image } = req.body;
-
-  try {
-    const post = await Post.create({ title, description, image });
-    res.status(200).json(post);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
+// Create A New Post
+router.post("/", createPost);
 
 // Delete A Post
-router.delete("/:id", (req, res) => {
-  res.json({ mssg: "Delete A Post" });
-});
+router.delete("/:id", deletePost);
 
 // Update A Post
-router.put("/:id", (req, res) => {
-  res.json({ mssg: "Update A Post" });
-});
+router.patch("/:id", updatePost);
 
 // Comments Routes
 
