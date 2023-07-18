@@ -6,6 +6,12 @@ const {
   deletePost,
   updatePost,
 } = require("../controllers/postsController");
+const {
+  getComments,
+  createComment,
+  deleteComment,
+  updateComment,
+} = require("../controllers/commentsController");
 
 const router = express.Router();
 
@@ -27,23 +33,15 @@ router.patch("/:id", updatePost);
 // Comments Routes
 
 // Get All Comments for a Post
-router.get("/:id/comments", (req, res) => {
-  res.json({ mssg: "Get All Comments for a Post" });
-});
+router.get("/:id/comments", getComments);
 
-// Post A New Comment for a Post
-router.post("/:id/comments", (req, res) => {
-  res.json({ mssg: "Post A New Comment for a Post" });
-});
+// Create A New Comment for a Post
+router.post("/:id/comments", createComment);
 
 // Delete A Comment
-router.delete("/:id/comments/:commentId", (req, res) => {
-  res.json({ mssg: "Delete A Comment" });
-});
+router.delete("/:postId/comments/:commentId", deleteComment);
 
 // Update A Comment
-router.put("/:id/comments/:commentId", (req, res) => {
-  res.json({ mssg: "Update A Comment" });
-});
+router.patch("/:postId/comments/:commentId", updateComment);
 
 module.exports = router;
