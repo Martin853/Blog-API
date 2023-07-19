@@ -23,7 +23,6 @@ export const PostContainer = () => {
       <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
         {posts &&
           posts.map((post) => {
-            console.log(post);
             return <PostCard key={post._id} post={post} />;
           })}
       </div>

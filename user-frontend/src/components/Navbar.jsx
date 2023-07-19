@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -7,7 +8,9 @@ export const Navbar = () => {
   return (
     <div className='w-full'>
       <div className='w-full h-fit p-8 bg-neutral-100 flex justify-between items-center md:px-16 lg:px-24'>
-        <h1 className='text-3xl font-bold'>Blog</h1>
+        <Link to={"/"} className='text-3xl font-bold'>
+          Blog
+        </Link>
         <div className='md:hidden'>
           {!openMenu && (
             <AiOutlineMenu
