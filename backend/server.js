@@ -3,10 +3,19 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const postsRoutes = require("./routes/posts");
+const cors = require("cors");
 
 // Initialized App
 
 const app = express();
+
+// Cors
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
 
 // Middleware
 
