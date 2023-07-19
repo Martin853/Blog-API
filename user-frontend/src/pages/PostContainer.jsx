@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { PostCard } from "./PostCard";
+import { PostCard } from "../components/PostCard";
 
 export const PostContainer = () => {
   const [posts, setPosts] = useState(null);
