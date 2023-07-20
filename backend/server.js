@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const postsRoutes = require("./routes/posts");
+const userRoutes = require("./routes/users");
 const cors = require("cors");
 
 // Initialized App
@@ -29,6 +30,7 @@ app.use((req, res, next) => {
 // Setup routes
 
 app.use("/api/posts", postsRoutes);
+app.use("/api/user", userRoutes);
 
 // Listen
 
