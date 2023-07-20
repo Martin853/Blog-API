@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import { Link } from "react-router-dom";
 
 export const CommentSection = ({ post }) => {
   const [comments, setComments] = useState([]);
@@ -23,6 +24,16 @@ export const CommentSection = ({ post }) => {
   return (
     <div className='w-full h-fit md:w-3/4 flex flex-col items-start gap-3'>
       <h1 className='font-bold text-xl'>Comments</h1>
+      <div className='w-full p-6 text-center mt-2 text-lg'>
+        <Link className='font-semibold' to={"/signup"}>
+          Sign Up
+        </Link>{" "}
+        or{" "}
+        <Link className='font-semibold' to={"/login"}>
+          Login
+        </Link>{" "}
+        to comment
+      </div>
       <div className='w-full flex flex-col gap-3'>
         {comments.length > 0 ? (
           comments.map((comment) => {
