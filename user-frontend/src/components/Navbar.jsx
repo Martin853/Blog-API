@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { useLogout } from "../hooks/useLogout";
 
 export const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
+  const { logout } = useLogout();
 
   return (
     <div className='w-full'>
@@ -30,6 +32,12 @@ export const Navbar = () => {
           )}
         </div>
         <div className='hidden md:flex gap-4 text-lg font-medium '>
+          <button
+            className='text-neutral-600 hover:text-neutral-900'
+            onClick={() => logout()}
+          >
+            Log out
+          </button>
           <Link
             to={"/signup"}
             className='text-neutral-600 hover:text-neutral-900'
@@ -46,6 +54,12 @@ export const Navbar = () => {
       </div>
       {openMenu && (
         <div className='w-full h-fit flex flex-col bg-neutral-50 p-8 gap-3 md:hidden'>
+          <button
+            className='w-full py-2 border-y text-center border-y-neutral-200 hover:bg-neutral-100 transition-all duration-300 ease-linear'
+            onClick={() => logout()}
+          >
+            Log out
+          </button>
           <Link
             to={"/signup"}
             className='w-full py-2 border-y text-center border-y-neutral-200 hover:bg-neutral-100 transition-all duration-300 ease-linear'
