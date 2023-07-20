@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { useLogin } from "../hooks/useLogin";
 
 export const Login = () => {
-  const [passwordVisible, setPasswordVisible] = useState("password");
-
   // Variables
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login, error, loading } = useLogin();
+
+  const [passwordVisible, setPasswordVisible] = useState("password");
 
   // Handle Submit
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    console.log(email, password);
+    await login(email, password);
   };
 
   return (
@@ -53,9 +55,17 @@ export const Login = () => {
           )}
         </div>
 
-        <button className='w-full h-fit mt-2 py-1 border border-black rounded-md hover:bg-black hover:text-white transition-all duration-300 ease-in-out select-none'>
+        <button
+          disabled={loading}
+          className='w-full h-fit mt-2 py-1 border border-black rounded-md hover:bg-black hover:text-white transition-all duration-300 ease-in-out select-none'
+        >
           Login
         </button>
+        {error && (
+          <div className='w-full bg-red-200 border border-red-700 h-fit p-6 rounded-md text-center text-red-700'>
+            {error}
+          </div>
+        )}
       </form>
     </div>
   );
