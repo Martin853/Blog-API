@@ -49,4 +49,26 @@ It must include at least 1 number (0-9).`);
   return user;
 };
 
+// Static Login Method
+
+userSchema.statics.login = async function (email, password) {
+  if (!email || !password) {
+    throw Error("All fields must be filled");
+  }
+
+  const user = await this.findOne({ email });
+
+  if (!user) {
+    throw Error("Incorrect Email");
+  }
+
+  const match = await bcrypt.compare(password, user.password);
+
+  if (!match) {
+    throw Error("Incorrect Password");
+  }
+
+  return user;
+};
+
 module.exports = mongoose.model("User", userSchema);
