@@ -1,12 +1,36 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { AiOutlineSend } from "react-icons/ai";
 
-export const AddComment = () => {
+export const AddComment = ({ postId }) => {
+  const user = useSelector((state) => state.user.value);
+
   // User Comment State
   const [userComment, setUserComment] = useState("");
 
   // Handle Click
-  const handleClick = () => {};
+  const handleClick = async () => {
+    console.log(user.email);
+    console.log(userComment);
+
+    const response = await fetch(
+      `${import.meta.env.VITE_API}/api/posts/${postId}/comments`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+        body: JSON.stringify({ content: userComment, email: user.email }),
+      }
+    );
+
+    const json = await response.json();
+
+    if (response.ok) {
+      setUserComment("");
+    }
+  };
 
   return (
     <div className='w-full h-fit flex flex-col gap-2'>

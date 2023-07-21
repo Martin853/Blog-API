@@ -10,7 +10,7 @@ const getComments = async (req, res) => {
   }
 
   try {
-    const comments = await Comment.find({ postId });
+    const comments = await Comment.find({ postId }).sort({ createdAt: -1 });
     res.status(200).json(comments);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -19,15 +19,19 @@ const getComments = async (req, res) => {
 
 // Create A Comment
 const createComment = async (req, res) => {
-  const { content, userId } = req.body;
+  const { content, email } = req.body;
+
+  console.log(content);
+
   const postId = req.params.id;
+  const userId = req.user._id;
 
   if (!mongoose.Types.ObjectId.isValid(postId)) {
     return res.status(404).json({ error: "Post not found" });
   }
 
   try {
-    const comment = await Comment.create({ content, userId, postId });
+    const comment = await Comment.create({ content, email, userId, postId });
 
     res.status(200).json(comment);
   } catch (error) {
