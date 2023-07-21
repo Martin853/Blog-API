@@ -19,7 +19,7 @@ const getComments = async (req, res) => {
 
 // Create A Comment
 const createComment = async (req, res) => {
-  const { content } = req.body;
+  const { content, userId } = req.body;
   const postId = req.params.id;
 
   if (!mongoose.Types.ObjectId.isValid(postId)) {
@@ -27,7 +27,7 @@ const createComment = async (req, res) => {
   }
 
   try {
-    const comment = await Comment.create({ content, postId });
+    const comment = await Comment.create({ content, userId, postId });
 
     res.status(200).json(comment);
   } catch (error) {
