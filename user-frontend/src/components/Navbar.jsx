@@ -9,7 +9,7 @@ export const Navbar = () => {
 
   return (
     <div className='w-full'>
-      <div className='w-full h-fit p-8 bg-neutral-100 flex justify-between items-center md:px-16 lg:px-24'>
+      <div className='w-full h-fit p-8 bg-neutral-100 flex justify-between items-center md:px-16 lg:px-24 shadow-lg'>
         <Link to={"/"} className='text-3xl font-bold'>
           Blog
         </Link>
