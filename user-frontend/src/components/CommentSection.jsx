@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { AiOutlineSend } from "react-icons/ai";
+import { CommentCard } from "./CommentCard";
 
 export const CommentSection = ({ post }) => {
   // User
@@ -78,22 +78,7 @@ export const CommentSection = ({ post }) => {
       <div className='w-full flex flex-col gap-5'>
         {comments.length > 0 ? (
           comments.map((comment) => {
-            return (
-              <div
-                key={comment._id}
-                className='w-full h-fit p-4 bg-neutral-100 rounded-md shadow-lg shadow-neutral-300 text-lg flex flex-col gap-3'
-              >
-                <div className='flex gap-3 items-center'>
-                  <h1 className='font-bold'>User</h1>
-                  <h1 className='text-base text-gray-600'>
-                    {formatDistanceToNow(new Date(comment.createdAt), {
-                      addSuffix: true,
-                    })}
-                  </h1>
-                </div>
-                <p>{comment.content}</p>
-              </div>
-            );
+            return <CommentCard key={comment._id} comment={comment} />;
           })
         ) : (
           <div className='w-full p-6 text-center mt-2 text-lg'>
