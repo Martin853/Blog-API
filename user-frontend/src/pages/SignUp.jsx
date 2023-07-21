@@ -30,7 +30,7 @@ export const SignUp = () => {
         <input
           type='text'
           value={email}
-          className=' w-full rounded p-2 shadow-md outline-none'
+          className=' w-full rounded p-2 shadow-md outline-none text-base'
           onChange={(event) => setEmail(event.target.value)}
         />
 
@@ -39,7 +39,7 @@ export const SignUp = () => {
           <input
             type={passwordVisible}
             value={password}
-            className=' w-full outline-none'
+            className=' w-full outline-none text-base'
             onChange={(event) => setPassword(event.target.value)}
           ></input>
           {passwordVisible == "password" ? (
