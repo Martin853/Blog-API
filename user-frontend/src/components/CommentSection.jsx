@@ -75,13 +75,13 @@ export const CommentSection = ({ post }) => {
         </div>
       )}
 
-      <div className='w-full flex flex-col gap-3'>
+      <div className='w-full flex flex-col gap-5'>
         {comments.length > 0 ? (
           comments.map((comment) => {
             return (
               <div
                 key={comment._id}
-                className='w-full h-fit p-4 bg-neutral-50 rounded-md shadow-lg shadow-neutral-300 text-lg flex flex-col gap-3'
+                className='w-full h-fit p-4 bg-neutral-100 rounded-md shadow-lg shadow-neutral-300 text-lg flex flex-col gap-3'
               >
                 <div className='flex gap-3 items-center'>
                   <h1 className='font-bold'>User</h1>
