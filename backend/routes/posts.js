@@ -13,7 +13,11 @@ const {
   updateComment,
 } = require("../controllers/commentsController");
 
+const requireAuth = require("../middleware/requireAuth");
+
 const router = express.Router();
+
+router.use(requireAuth);
 
 // Get All Posts
 router.get("/", getPosts);
