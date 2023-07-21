@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { PostCard } from "../components/PostCard";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export const PostContainer = () => {
   const [posts, setPosts] = useState(null);
+  const user = useSelector((state) => state.user.value);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch(`${import.meta.env.VITE_API}/api/posts`);
+      const response = await fetch(`${import.meta.env.VITE_API}/api/posts`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
       const json = await response.json();
 
       if (response.ok) {
@@ -15,8 +21,10 @@ export const PostContainer = () => {
       }
     };
 
-    fetchPosts();
-  }, []);
+    if (user) {
+      fetchPosts();
+    }
+  }, [user]);
 
   if (!posts) {
     return (
