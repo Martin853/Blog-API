@@ -52,7 +52,7 @@ export const CommentSection = ({ post }) => {
         </div>
       )}
 
-      {user && <AddComment postId={id} />}
+      {user && <AddComment postId={id} setComments={setComments} />}
 
       <div className='w-full flex flex-col gap-5'>
         {comments.length > 0 ? (

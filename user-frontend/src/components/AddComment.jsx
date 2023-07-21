@@ -2,17 +2,32 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { AiOutlineSend } from "react-icons/ai";
 
-export const AddComment = ({ postId }) => {
+export const AddComment = ({ postId, setComments }) => {
   const user = useSelector((state) => state.user.value);
 
   // User Comment State
   const [userComment, setUserComment] = useState("");
 
+  // Fetch Comments
+
+  const fetchComments = async () => {
+    const response = await fetch(
+      `http://localhost:3000/api/posts/${postId}/comments`,
+      {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }
+    );
+    const json = await response.json();
+
+    if (response.ok) {
+      setComments(json);
+    }
+  };
+
   // Handle Click
   const handleClick = async () => {
-    console.log(user.email);
-    console.log(userComment);
-
     const response = await fetch(
       `${import.meta.env.VITE_API}/api/posts/${postId}/comments`,
       {
@@ -29,6 +44,7 @@ export const AddComment = ({ postId }) => {
 
     if (response.ok) {
       setUserComment("");
+      fetchComments();
     }
   };
 
