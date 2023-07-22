@@ -15,12 +15,7 @@ export const CommentSection = ({ post }) => {
   useEffect(() => {
     const fetchComments = async () => {
       const response = await fetch(
-        `http://localhost:3000/api/posts/${id}/comments`,
-        {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
+        `http://localhost:3000/api/posts/${id}/comments`
       );
       const json = await response.json();
 
@@ -29,10 +24,8 @@ export const CommentSection = ({ post }) => {
       }
     };
 
-    if (user) {
-      fetchComments();
-    }
-  }, [user]);
+    fetchComments();
+  }, []);
 
   return (
     <div className='w-full h-fit md:w-3/4 flex flex-col items-start gap-3'>

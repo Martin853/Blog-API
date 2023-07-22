@@ -17,10 +17,13 @@ const requireAuth = require("../middleware/requireAuth");
 
 const router = express.Router();
 
-router.use(requireAuth);
-
 // Get All Posts
 router.get("/", getPosts);
+
+// Get All Comments for a Post
+router.get("/:id/comments", getComments);
+
+router.use(requireAuth);
 
 // Get A Single Post
 router.get("/:id", getPost);
@@ -35,9 +38,6 @@ router.delete("/:id", deletePost);
 router.patch("/:id", updatePost);
 
 // Comments Routes
-
-// Get All Comments for a Post
-router.get("/:id/comments", getComments);
 
 // Create A New Comment for a Post
 router.post("/:id/comments", createComment);

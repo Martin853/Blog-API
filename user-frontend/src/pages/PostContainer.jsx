@@ -10,11 +10,7 @@ export const PostContainer = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch(`${import.meta.env.VITE_API}/api/posts`, {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
+      const response = await fetch(`${import.meta.env.VITE_API}/api/posts`);
       const json = await response.json();
 
       if (response.ok) {
@@ -22,10 +18,8 @@ export const PostContainer = () => {
       }
     };
 
-    if (user) {
-      fetchPosts();
-    }
-  }, [user]);
+    fetchPosts();
+  }, []);
 
   if (!posts) {
     return (

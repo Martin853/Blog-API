@@ -6,8 +6,14 @@ import jwt_decode from "jwt-decode";
 
 export const CommentCard = ({ comment, setComments }) => {
   const user = useSelector((state) => state.user.value);
-  const token = user.token;
-  const decodedToken = jwt_decode(token);
+  let token;
+  if (user) {
+    token = user.token;
+  }
+  let decodedToken;
+  if (token) {
+    decodedToken = jwt_decode(token);
+  }
   const userId = comment.userId;
 
   const deleteComment = async () => {
@@ -28,12 +34,7 @@ export const CommentCard = ({ comment, setComments }) => {
 
   const fetchComments = async () => {
     const response = await fetch(
-      `http://localhost:3000/api/posts/${comment.postId}/comments`,
-      {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      }
+      `http://localhost:3000/api/posts/${comment.postId}/comments`
     );
     const json = await response.json();
 
@@ -47,7 +48,7 @@ export const CommentCard = ({ comment, setComments }) => {
       <div className='flex flex-col gap-3 items-start sm:flex-row sm:items-center w-full'>
         <div className='w-full sm:w-fit flex gap-3'>
           <h1 className='font-bold text-base sm:text-lg'>{comment.email}</h1>
-          {userId === decodedToken._id && (
+          {userId && decodedToken && userId === decodedToken._id && (
             <AiFillDelete
               onClick={deleteComment}
               className='block sm:hidden ml-auto text-2xl hover:cursor-pointer'
@@ -59,7 +60,7 @@ export const CommentCard = ({ comment, setComments }) => {
             addSuffix: true,
           })}
         </h1>
-        {userId === decodedToken._id && (
+        {userId && decodedToken && userId === decodedToken._id && (
           <AiFillDelete
             onClick={deleteComment}
             className='hidden sm:block ml-auto text-2xl hover:cursor-pointer'
