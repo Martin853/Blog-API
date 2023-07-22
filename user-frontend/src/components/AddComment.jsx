@@ -12,12 +12,7 @@ export const AddComment = ({ postId, setComments }) => {
 
   const fetchComments = async () => {
     const response = await fetch(
-      `http://localhost:3000/api/posts/${postId}/comments`,
-      {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      }
+      `http://localhost:3000/api/posts/${postId}/comments`
     );
     const json = await response.json();
 
