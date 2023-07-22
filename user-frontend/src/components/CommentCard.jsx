@@ -18,7 +18,9 @@ export const CommentCard = ({ comment, setComments }) => {
 
   const deleteComment = async () => {
     const response = await fetch(
-      `http://localhost:3000/api/posts/${comment.postId}/comments/${comment._id}`,
+      `${import.meta.env.VITE_API}/api/posts/${comment.postId}/comments/${
+        comment._id
+      }`,
       {
         method: "DELETE",
         headers: {
@@ -34,7 +36,7 @@ export const CommentCard = ({ comment, setComments }) => {
 
   const fetchComments = async () => {
     const response = await fetch(
-      `http://localhost:3000/api/posts/${comment.postId}/comments`
+      `${import.meta.env.VITE_API}/api/posts/${comment.postId}/comments`
     );
     const json = await response.json();
 

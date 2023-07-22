@@ -12,7 +12,7 @@ export const AddComment = ({ postId, setComments }) => {
 
   const fetchComments = async () => {
     const response = await fetch(
-      `http://localhost:3000/api/posts/${postId}/comments`
+      `${import.meta.env.VITE_API}/api/posts/${postId}/comments`
     );
     const json = await response.json();
 

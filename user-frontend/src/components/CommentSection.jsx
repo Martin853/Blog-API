@@ -15,7 +15,7 @@ export const CommentSection = ({ post }) => {
   useEffect(() => {
     const fetchComments = async () => {
       const response = await fetch(
-        `http://localhost:3000/api/posts/${id}/comments`
+        `${import.meta.env.VITE_API}/api/posts/${id}/comments`
       );
       const json = await response.json();
 
