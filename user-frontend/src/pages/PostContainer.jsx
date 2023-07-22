@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { PostCard } from "../components/PostCard";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { PostCardSkeleton } from "../components/PostCardSkeleton";
 
 export const PostContainer = () => {
   const [posts, setPosts] = useState(null);
@@ -30,11 +31,16 @@ export const PostContainer = () => {
     return (
       <div className='p-6 md:px-16 lg:px-24 flex flex-col w-full h-screen gap-6'>
         <h1 className='text-lg'>Posts</h1>
-        <div className='w-full h-full flex justify-center items-center'>
-          <div className='flex flex-col items-center gap-4'>
-            <h1 className='text-3xl font-medium'>Loading...</h1>
-            <AiOutlineLoading3Quarters className='text-4xl animate-spin' />
-          </div>
+        <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
+          <PostCardSkeleton />
+          <PostCardSkeleton />
+          <PostCardSkeleton />
+          <PostCardSkeleton />
+          <PostCardSkeleton />
+          <PostCardSkeleton />
+          <PostCardSkeleton />
+          <PostCardSkeleton />
+          <PostCardSkeleton />
         </div>
       </div>
     );
