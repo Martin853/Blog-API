@@ -57,7 +57,13 @@ export const CommentSection = ({ post }) => {
       <div className='w-full flex flex-col gap-5'>
         {comments.length > 0 ? (
           comments.map((comment) => {
-            return <CommentCard key={comment._id} comment={comment} />;
+            return (
+              <CommentCard
+                key={comment._id}
+                comment={comment}
+                setComments={setComments}
+              />
+            );
           })
         ) : (
           <div className='w-full p-6 text-center mt-2 text-lg'>
