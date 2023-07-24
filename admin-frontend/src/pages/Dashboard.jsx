@@ -9,7 +9,7 @@ export const Dashboard = () => {
 
   if (page === "add") {
     return (
-      <div className='w-full'>
+      <div className='w-full flex flex-col gap-10'>
         <DashboardNavigation setPage={setPage} />
         <AddPost />
       </div>
@@ -18,7 +18,7 @@ export const Dashboard = () => {
 
   if (page === "edit") {
     return (
-      <div className='w-full'>
+      <div className='w-full flex flex-col gap-10'>
         <DashboardNavigation setPage={setPage} />
         <EditPosts />
       </div>
@@ -27,7 +27,7 @@ export const Dashboard = () => {
 
   if (page === "delete") {
     return (
-      <div className='w-full'>
+      <div className='w-full flex flex-col gap-10'>
         <DashboardNavigation setPage={setPage} />
         <DeletePosts />
       </div>
