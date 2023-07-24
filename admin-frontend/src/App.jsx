@@ -26,7 +26,10 @@ export const App = () => {
             path={"/"}
             element={!user ? <Login /> : <Navigate to={"/dashboard"} />}
           />
-          <Route path='/dashboard' element={<Dashboard />} />
+          <Route
+            path='/dashboard'
+            element={user ? <Dashboard /> : <Navigate to={"/"} />}
+          />
         </Routes>
       </BrowserRouter>
     </div>
