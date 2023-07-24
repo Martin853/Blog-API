@@ -30,6 +30,11 @@ export const useLogin = () => {
     }
 
     if (response) {
+      // Validate
+      if (json.email !== "admin") {
+        return;
+      }
+
       // Save user to local storage
 
       localStorage.setItem("user", JSON.stringify(json));
