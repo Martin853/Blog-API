@@ -7,8 +7,8 @@ export const EditPosts = () => {
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API}/api/posts`)
       .then((res) => res.json())
-      .then((posts) => setPosts(posts));
-  });
+      .then((data) => setPosts(data));
+  }, []);
 
   return (
     <div className='w-full flex flex-col gap-4 items-center'>

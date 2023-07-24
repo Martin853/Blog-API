@@ -10,7 +10,7 @@ export const DeletePosts = () => {
     fetch(`${import.meta.env.VITE_API}/api/posts`)
       .then((res) => res.json())
       .then((posts) => setPosts(posts));
-  });
+  }, []);
 
   const deletePost = (id) => {
     fetch(`${import.meta.env.VITE_API}/api/posts/${id}`, {
