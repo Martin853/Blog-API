@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { DeletePostCard } from "./DeletePostCard";
 
 export const DeletePosts = () => {
   const user = useSelector((state) => state.user.value);
@@ -34,26 +35,7 @@ export const DeletePosts = () => {
     <div className='w-full flex flex-col gap-4 items-center'>
       <h1 className='text-xl font-semibold'>Delete Posts</h1>
       <div className='w-full h-fit p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-auto'>
-        {posts &&
-          posts.map((post) => (
-            <div
-              key={post._id}
-              className='w-full h-full flex flex-col justify-between gap-3 items-center p-4 flex-grow'
-            >
-              <img src={post.image} className='rounded' />
-              <h1 className='text-sm md:text-lg font-semibold text-center'>
-                {post.title}
-              </h1>
-              <button
-                onClick={() => {
-                  deletePost(post._id);
-                }}
-                className='w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded'
-              >
-                Delete
-              </button>
-            </div>
-          ))}
+        {posts && posts.map((post) => <DeletePostCard post={post} />)}
       </div>
     </div>
   );
