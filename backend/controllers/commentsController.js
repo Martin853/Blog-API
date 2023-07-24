@@ -40,22 +40,28 @@ const createComment = async (req, res) => {
 };
 
 // Delete Comment
-const deleteComment = async (req, res) => {
-  const { postId, commentId } = req.params;
+const deletePost = async (req, res) => {
+  const { id } = req.params;
 
-  console.log("postId:", postId);
-  console.log("commentId:", commentId);
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: `Post doesn't exist` });
+  }
 
   try {
-    const comment = await Comment.findOneAndDelete({ _id: commentId, postId });
+    // Find and delete the post
+    const post = await Post.findByIdAndDelete(id);
 
-    if (!comment) {
-      return res.status(404).json({ error: "Comment not found" });
+    if (!post) {
+      return res.status(404).json({ error: `Post doesn't exist` });
     }
 
-    res.status(200).json(comment);
+    await Comment.deleteMany({ post: id });
+
+    res
+      .status(200)
+      .json({ message: "Post and its comments deleted successfully" });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
 
