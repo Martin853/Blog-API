@@ -40,7 +40,7 @@ const createComment = async (req, res) => {
 };
 
 // Delete Comment
-const deletePost = async (req, res) => {
+const deleteComment = async (req, res) => {
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
