@@ -1,6 +1,28 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
-export const DeletePostCard = ({ post }) => {
+export const DeletePostCard = ({ post, setPosts }) => {
+  const user = useSelector((state) => state.user.value);
+
+  const deletePost = (id) => {
+    fetch(`${import.meta.env.VITE_API}/api/posts/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          setPosts((prevPosts) => prevPosts.filter((post) => post._id !== id));
+        }
+        return res.json();
+      })
+      .catch((error) => {
+        console.error("Error deleting post:", error);
+      });
+  };
+
   return (
     <div
       key={post._id}
