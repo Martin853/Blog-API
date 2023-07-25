@@ -14,7 +14,11 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://blog1111.netlify.app"],
+    origin: [
+      "http://localhost:5173",
+      "https://blog1111.netlify.app",
+      "https://blog-api-dashboard.netlify.app",
+    ],
     methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
   })
 );
